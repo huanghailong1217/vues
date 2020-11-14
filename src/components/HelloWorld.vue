@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1 @click="handleMsg">{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -31,10 +31,30 @@
 </template>
 
 <script>
+import create from '@/utils/create'
+import Noctive from './Noctive'
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  mounted(){
+    console.log(this.$tocat)
+    this.$tocat({
+      title: 'ex',
+      toggle: true,
+      content: 'hello world'
+    },200000)
+  },
+  methods:{
+     handleMsg() {
+       let res = create(Noctive,{
+          title:'开始自律了',
+          message: 'hello',
+          duration: 20000
+        })
+        res.show()
+     }
   }
 }
 </script>
